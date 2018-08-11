@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>六星ERP</title>
+		<script type="text/javascript" src="__STATIC__/js/jquery.min.js"></script>
+		<script type="text/javascript" src="__STATIC__/js/api.js"></script>
+		<style>
+			/* CSS Document */
+
+			html {
+				background: url("__STATIC__/images/landscape.jpg") no-repeat center center fixed;
+				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Public/Home/images/landscape.jpg', sizingMethod='scale');
+				-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Public/Home/images/landscape.jpg', sizingMethod='scale')";
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
+
+			html,
+			body,
+			div,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p,
+			img,
+			dl,
+			dt,
+			dd,
+			ol,
+			ul,
+			li,
+			table,
+			caption,
+			tbody,
+			tfoot,
+			thead,
+			tr,
+			th,
+			td,
+			form,
+			fieldset,
+			embed,
+			object,
+			applet,
+			header,
+			nav,
+			section,
+			strong,
+			footer,
+			a img {
+				border: 0;
+				margin: 0;
+				padding: 0
+			}
+
+			ul {
+				list-style: none
+			}
+
+			article,
+			aside,
+			details,
+			figcaption,
+			figure,
+			footer,
+			header,
+			hgroup,
+			nav,
+			section {
+				display: block;
+			}
+
+			audio,
+			canvas,
+			video {
+				display: inline-block;
+				*display: inline;
+				*zoom: 1;
+			}
+
+			audio:not([controls]) {
+				display: none;
+			}
+
+			[hidden] {
+				display: none;
+			}
+
+			body {
+				color: black;
+				font: 14px/180% "微软雅黑", arial, \5b8b\4f53;
+				color: #333333;
+				position: relative;
+			}
+
+			a {
+				text-decoration: none;
+				color: #333;
+			}
+
+			a:visited {}
+
+			a:hover,
+			a:active,
+			a:focus {
+				color: #da005b;
+				text-decoration: noen;
+				outline: none;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-style: normal;
+				font-weight: normal;
+			}
+
+			section {
+				position: relative;
+			}
+
+			.clearfix:before,
+			.clearfix:after {
+				content: "";
+				display: table;
+			}
+
+			.clearfix:after {
+				clear: both;
+				overflow: hidden;
+			}
+
+			.clearfix {
+				zoom: 1;
+			}
+
+			.break {
+				width: 100%;
+				height: 20px;
+				overflow: hidden;
+				clear: both;
+				content: "";
+			}
+
+			.gclear {
+				clear: both;
+				font-size: 0;
+				overflow: hidden;
+				height: 0;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				min-width: 800px;
+				min-height: 600px;
+			}
+
+			.signIn {
+				width: 340px;
+				height: 220px;
+				position: absolute;
+				left: 50%;
+				top: 20%;
+				margin-left: -200px;
+				padding: 30px;
+				border-radius: 10px;
+				-webkit-border-radius: 10px;
+				box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
+				border-radius: 5px;
+				background: rgba(255, 255, 255, 0.65);
+			}
+
+			.signIn h6 {
+				text-transform: uppercase;
+				margin: 0 0 30px 0;
+				font-size: 18px;
+				font-weight: 600;
+				text-align: center;
+			}
+
+			.signIn ul li {
+				width: 100%;
+				margin-bottom: 18px;
+			}
+
+			.signIn ul li input {
+				width: 100%;
+				box-sizing: border-box;
+				font-size: 15px;
+				height: 40px;
+				border-color: #b2bfc7;
+				padding-left: 12px;
+				background-color: #ffffff;
+				border: 1px solid #cccccc;
+				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+				-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+				-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+				transition: border linear 0.2s, box-shadow linear 0.2s;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+			}
+
+			.signIn ul li input.code {
+				width: 160px;
+				text-align: center;
+				margin-right: 5px;
+			}
+
+			.signIn ul li img {
+				vertical-align: middle;
+				float: right;
+				height: 40px;
+			}
+
+			.signIn ul li a {
+				display: inline-block;
+				line-height: 24px;
+				vertical-align: middle;
+			}
+
+			.signIn button {
+				border-width: 1px;
+				text-transform: uppercase;
+				font-size: 18px;
+				padding: 10px 50px;
+				border-color: #2480c2;
+				color: #fff;
+				text-shadow: rgba(0, 0, 0, 0.35) 0 1px 0;
+				box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+				background: #54b3ff;
+				background: -moz-linear-gradient(top, #54b3ff 0%, #0078d9 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #54b3ff), color-stop(100%, #0078d9));
+				background: -webkit-linear-gradient(top, #54b3ff 0%, #0078d9 100%);
+				background: linear-gradient(#54b3ff, #0078d9);
+				background: -o-linear-gradient(top, #54b3ff 0%, #0078d9 100%);
+				background: -ms-linear-gradient(top, #54b3ff 0%, #0078d9 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54b3ff', endColorstr='#0078d9', GradientType=0);
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+				box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgb(204, 204, 204);
+				display: inline-block;
+				vertical-align: middle;
+				cursor: pointer;
+				outline: none;
+			}
+
+			.signIn button:hover {
+				background: rgb(56, 155, 235);
+				background: -moz-linear-gradient(top, rgb(56, 155, 235) 0%, #0078d9 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(56, 155, 235)), color-stop(100%, #0078d9));
+				background: -webkit-linear-gradient(top, rgb(56, 155, 235) 0%, #0078d9 100%);
+				background: linear-gradient(rgb(56, 155, 235), #0078d9);
+				background: -o-linear-gradient(top, rgb(56, 155, 235) 0%, #0078d9 100%);
+				background: -ms-linear-gradient(top, rgb(56, 155, 235) 0%, #0078d9 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(56, 155, 235)', endColorstr='#0078d9', GradientType=0);
+				box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgb(204, 204, 204);
+			}
+
+			.signIn button:active {
+				-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset !important;
+				-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset !important;
+				box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset !important;
+			}
+
+			#signinMsg {
+				position: absolute;
+				line-height: 32px;
+				font-size: 18px;
+				text-align: center;
+				left: 0;
+				top: 15%;
+				text-align: center;
+				width: 100%;
+			}
+			/**LOADING start**/
+
+			#side-mask {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 99;
+				background: rgba(0, 0, 0, .1);
+			}
+			/***syou-alert***/
+		</style>
+	</head>
+
+	<body>
+		<div class="signIn">
+			<h6>六星ERP</h6>
+			<ul>
+				<li>
+					<input type="text" name="uname" value="" placeholder="请输入您的账户" />
+				</li>
+				<li>
+					<input type="password" name="password" value="" placeholder="请输入您的密码" />
+				</li>
+				<li style="display:none;">
+					<input type="text" name="code" value="" placeholder="验证码" class="code" />
+					<img style="cursor:pointer;" onClick="changeVerify()" class="verifyimg reloadverify yzm" title="点击切换" src="../../static/picture/d9c63d1e2e904957ac69fe5b783a1d7d.gif" />
+				</li>
+				<li style="text-align:center;">
+					<button type="button" id="signinBtn" onClick="signin();">确定</button>
+				</li>
+			</ul>
+		</div>
+		<div id="signinMsg"></div>
+		<div id="side-mask" style="display:none;"></div>
+	</body>
+	<script type="text/javascript">
+		if(window.parent && window.parent.location.href !== window.location.href) {
+			window.parent.location.href = '/Home/Signin/index';
+		}
+
+		var fequency = 0;
+		2 < fequency && ($('.signIn').css({
+			'height': '280px'
+		}), $('.signIn ul li:eq(2)').css({
+			'display': 'block'
+		}));
+
+		function signin() {
+			var uname = $.trim($('input[name=uname]').val()),
+				password = $.trim($('input[name=password]').val()),
+				code = $.trim($('input[name=code]').val());
+
+			if('' == uname || '' == password) {
+				return false;
+			}
+
+
+			 $.ajax({
+			 	url: "{:url('index/Signin/login')}", // 跳转到 action
+			 	beforeSend: function() {
+			 		$('#side-mask').css({
+			 			'display': 'block'
+			 		});
+			 		$('#signinMsg').html('');
+			 	},
+			 	type: 'post',
+			 	cache: false,
+			 	async: true,
+			 	/*true异步执行，false*/
+			 	data: {
+			 		'uname': uname,
+			 		'password': password,
+			 		'code': code
+			 	},
+			 	dataType: 'json',
+			 	success: function(ret) {
+			 		if(ret.state) {
+			 			 window.location.href = "{:url('/index/Index')}";
+			 		} else {
+			 			showVerify();
+			 			changeVerify();
+			 			$('#signinMsg').html(ret.msg);
+			 		}
+			 	},
+			 	error: function(xmlHttpRequest, error) {
+			 		showVerify();
+			 		if(error == 'timeout') { //超时
+			 			$('#signinMsg').html('请检测网络');
+			 		} else {
+			 			$('#signinMsg').html('系统错误:' + error);
+			 		}
+			 	},
+			 	complete: function() {
+			 		$('#side-mask').css({
+			 			'display': 'none'
+			 		});
+			 	}
+			 });
+			return false;
+		}
+
+		$(document).keydown(function(event) {
+			if(13 == event.keyCode) {
+				signin();
+			}
+		});
+
+		function changeVerify() {
+			$rand = Math.random();
+			var src = "{:url('index/verify')}";
+			src = src.replace('.html', '');
+			src += "/" + $rand + ".html";
+			$(".yzm").attr('src', src);
+		}
+
+		function showVerify() {
+			fequency += 1;
+			2 < fequency && ($('.signIn').css({
+				'height': '280px'
+			}), $('.signIn ul li:eq(2)').css({
+				'display': 'block'
+			}));
+		}
+	</script>
+
+</html>

@@ -1,0 +1,201 @@
+{extend name='Common/base' /}
+
+{block name='style'}
+<style>
+	.tabs-header {
+		min-width: 100%;
+		width: 100%;
+	}
+
+	.top_user_right {
+		float: right;
+		color: #FFF;
+		line-height: 60px;
+		padding: 0 10px;
+	}
+
+	.top_user_right a {
+		color: #FFF;
+	}
+</style>
+{/block}
+{block name='body'}
+<body class="easyui-layout" id="cc">
+	<div class="lee-header clearfix" data-options="region:'north',border:false">
+		<a class="logo" href="###"><img src="../../static/picture/logo.png" /></a>
+		<ul class="lee-menu clearfix">
+			<li>
+				<a href="left_menu/id/1.html" target="left_menu ">商品部</a>
+			</li>
+			<li>
+				<a href="left_menu/id/3.html" target="left_menu ">运营部</a>
+			</li>
+			<li>
+				<a href="left_menu/id/5.html" target="left_menu ">采购部</a>
+			</li>
+			<li>
+				<a href="left_menu/id/6.html" target="left_menu ">仓库</a>
+			</li>
+			<li>
+				<a href="left_menu/id/10.html" target="left_menu ">财务部</a>
+			</li>
+		</ul>
+		<ul class="lee-top-right clearfix">
+			<li>
+				<a class="lee-msg" title="站内信" href="javascript:addPanel('../Message/index.html','消息',true);"></a>
+			</li>
+			<li>
+				<a class="lee-setting" title="设置" href="{:url('/index/Setting')}" target="left_menu "></a>
+			</li>
+			<li>
+				<a class="lee-out " title="退出 " href="../Signin/index.html "></a>
+			</li>
+		</ul>
+		<div class="top_user_right ">
+			<a href="javascript:addPanel( '../Admin/my.html', '个人资料',true); ">超级管理员:Admin</a>
+		</div>
+	</div>
+	<div data-options="region: 'west',split:true,title: '收起',onCollapse:function(){ resetCenterSize();},onExpand:function(){ resetCenterSize();} " style="width:200px; ">
+		<div class="lee-left-menu ">
+			<iframe src="" name="left_menu " class="lee-left-iframe " frameborder="0 " allowtransparency="true "></iframe>
+		</div>
+	</div>
+	<div data-options="region: 'east',split:true,collapsed:true,title: '消息' " style="width:380px; display:none; ">
+		<ul class="lee-right-east " id="message-box">
+			<li>
+				[任务]<a href="../Message/info/id/1.html" >订单已经终止，请处理退款</a>
+			</li>
+		</ul>
+	</div>
+	<div data-options="region: 'south',border:false " style="height:20px; line-height:20px; text-align:center; background:#ddd; "></div>
+	<div data-options="region: 'center',tools: '#tab-tools' " style=" border:none; width:100%; " id="tt" class="easyui-tabs ">
+
+	</div>
+</body>
+{/block}
+<script type="text/javascript ">
+	var menuIndex = 0;
+
+	function addPanel(url, title, id, _closable) {
+
+		!id && (id = 0);
+		undefined === _closable && (_closable = true);
+		var isopend = false;
+		$('#tt').find('iframe').each(function(_index, _element) {
+			console.log(url,title,id,_closable);
+			if (id == $(this).data('id')) {
+				$('#tt').tabs('select', _index);
+				this.src = url;
+				isopend = true;
+				return false;
+			}
+		});
+
+		if (!isopend) {
+			menuIndex++;
+			$('#tt').tabs('add', {
+				title: menuIndex + '、' + title,
+				content: '<div id="iframe" style=" width:100%; height:100%; overflow:hidden; "><iframe src=" ' + url + ' " data-id=" ' + id + ' " style=" width:100%; height:100%; border:none; " frameborder="0 " allowtransparency="true "></iframe></div>',
+				closable: _closable
+			});
+		}
+	}
+
+	function removePanel() {
+		var tab = $('#tt').tabs('getSelected');
+		if (tab) {
+			var index = $('#tt').tabs('getTabIndex', tab);
+			$('#tt').tabs('close', index);
+		}
+	}
+	$(window).resize(function() {
+//		setTimeout(function() {
+//			resetCenterSize();
+//		}, 500);
+	});
+
+	function resetCenterSize() {
+		var old_width = $("#tt ").parent().width();
+		var width = $("#tt ").tabs('options').width;
+		if (old_width !== width) {
+			$('#tt').tabs('resize', {
+				width: old_width,
+			});
+			$('#to-print').datagrid('resize', {
+				width: old_width,
+			});
+		}
+	};
+
+	/**消息**/
+	if (typeof console == "undefined ") {
+		this.console = {
+			log: function(msg) {}
+		};
+	}
+	WEB_SOCKET_SWF_LOCATION = "/Public/Comm/wm/swf/WebSocketMain.swf ";
+	WEB_SOCKET_DEBUG = true;
+	var ws, name, client_list = {};
+	var user_id = '1',
+		user_name = 'admin',
+		msg_url = '/Home/Message/info';;
+	var connect_num = 0; //链接次数
+	// 连接服务端
+	function connect() {
+		return false;
+		// 创建websocket
+		ws = new WebSocket("ws:// " + document.domain + ":7272 ");
+		// 当socket连接打开时，输入用户名
+		ws.onopen = onopen;
+		// 当有消息时根据消息类型显示不同信息
+		ws.onmessage = onmessage;
+		ws.onclose = function() {
+			console.log("连接关闭，定时重连 ");
+			3 > connect_num && connect();
+			connect_num++;
+		};
+		ws.onerror = function() {
+			console.log("出现错误 ");
+		};
+	}
+
+	//带上用户的名称和用户的ID
+	function onopen() {
+		var login_data = '{"type ":"login ","client_name ":" ' + user_name.replace(/"/g, '\ "') + '", "user_id": ' + user_id + '} ';
+		console.log("websocket握手成功，发送登录数据:" + login_data);
+		ws.send(login_data);
+	}
+	// 服务端发来消息时做出反馈 当前服务端过来的type = inform dataType = json
+	function onmessage(e) {
+		var data = eval("(" + e.data + ")");
+		switch (data['type ']) {
+			// 服务端ping客户端
+			case 'ping ':
+				//console.log('ping ');
+				ws.send('{ "type": "pong"} ');
+				break;;
+				//登录 更新用户列表
+				/*case 'inform ':
+					$('#message-box ').append('<li>
+								<a href="'+msg_url+'/id/'+data['msg_id']+'">'+data['msg_title']+'</a>
+						</li>'); 'none' == $('.layout-panel-east').css('display') && $('#cc').layout('expand','east') && $('#cc').layout('expand','east'); break;*/ //用户退出 更新用户列表 //登录 更新用户列表
+			case 'inform_new': //console.log(data);
+				$('#message-box').append(' <li > ['+(0 <data['msg_type'] ? '任务' : '消息') + ']<a href="' + msg_url + '/id/' + data['msg_id'] + '">' + data['msg_title'] + '</a></li>');
+				'none' == $('.layout-panel-east').css('display') && $('#cc').layout('expand', 'east');
+				break; //用户退出 更新用户列表
+			case 'logout':
+				break;
+		}
+	}
+	$('#message-box').delegate('a', 'click', function() {
+		addPanel($(this).attr('href'), '消息', true);
+		$('#cc').layout('collapse', 'east');
+		$(this).parents('li').remove();
+		return false;
+	});
+	$(document).ready(function() {
+				addPanel('home.html', '桌面', false); //
+				0 < $( '#message-box li').length && 'none'==$ ( '.layout-panel-east').css( 'display') && $( '#cc').layout( 'expand', 'east'); connect(); });
+</script>
+
+</html>

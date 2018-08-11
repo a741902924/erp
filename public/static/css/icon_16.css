@@ -1,0 +1,96 @@
+﻿.icon-blank{
+	background:url('../images/blank_18.gif') no-repeat center center;
+}
+.icon-add{
+	background:url('../images/edit_add_16.png') no-repeat center center;
+}
+.icon-edit{
+	background:url('../images/pencil_16.png') no-repeat center center;
+}
+.icon-clear{
+	background:url('../images/clear_16.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('../images/edit_remove_16.png') no-repeat center center;
+}
+.icon-save{
+	background:url('../images/filesave_16.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('../images/cut_16.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('../images/ok_16.png') no-repeat center center;
+}
+.icon-no{
+	background:url('../images/no_16.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('../images/cancel_16.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('../images/reload_16.png') no-repeat center center;
+}
+.icon-search{
+	background:url('../images/search_16.png') no-repeat center center;
+}
+.icon-print{
+	background:url('../images/print_16.png') no-repeat center center;
+}
+.icon-help{
+	background:url('../images/help_16.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('../images/undo_16.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('../images/redo_16.png') no-repeat center center;
+}
+.icon-back{
+	background:url('../images/back_16.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('../images/sum_16.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('../images/tip_16.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('../images/filter_16.png') no-repeat center center;
+}
+.icon-man{
+	background:url('../images/man_16.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('../images/lock_16.png') no-repeat center center;
+}
+.icon-more{
+	background:url('../images/more_16.png') no-repeat center center;
+}
+
+
+.icon-mini-add{
+	background:url('../images/mini_add_16.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('../images/mini_edit_16.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('../images/mini_refresh_16.png') no-repeat center center;
+}
+
+.icon-large-picture{
+	background:url('../images/large_picture_16.png') no-repeat center center;
+}
+.icon-large-clipart{
+	background:url('../images/large_clipart_16.png') no-repeat center center;
+}
+.icon-large-shapes{
+	background:url('../images/large_shapes_16.png') no-repeat center center;
+}
+.icon-large-smartart{
+	background:url('../images/large_smartart_16.png') no-repeat center center;
+}
+.icon-large-chart{
+	background:url('../images/large_chart_16.png') no-repeat center center;
+}

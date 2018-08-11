@@ -1,0 +1,44 @@
+{extend name='Common/base' /}
+{block name='body'}
+<body class="left-body">
+	<div class="easyui-accordion lee-menu-class" data-options="fit:true,border:false">
+		<div title="人员" data-options="selected:true">
+			<ul class="lee-menu-list">
+				<li onclick="addPanel('../Department/index.html',this)" data-id="101" data-name="人员">组织架构维护</li>
+				<li onclick="addPanel('../Admin/index.html',this)" data-id="101" data-name="人员">人员列表</li>
+				<li onclick="addPanel('../Role/index.html',this)" data-id="101" data-name="人员">权限分配</li>
+				<li onclick="addPanel('../Adminlog/index.html',this)" data-id="101" data-name="人员">管理员日志</li>
+				<li onclick="addPanel('../Process/index.html',this)" data-id="101" data-name="人员">审批流程管理</li>
+			</ul>
+		</div>
+		<div title="数据">
+			<ul class="lee-menu-list">
+				<li onclick="addPanel('../Database/index.html',this)" data-id="103" data-name="数据">数据备份</li>
+				<li onclick="addPanel('../Nav/index.html',this)" data-id="103" data-name="数据">系统导航</li>
+				<li onclick="addPanel('../Region/index.html',this)" data-id="103" data-name="数据">地区管理</li>
+				<li onclick="addPanel('../Fromrule/index.html',this)" data-id="103" data-name="数据">表单规则编号</li>
+				<li onclick="addPanel('../Fault/lockstock.html',this)" data-id="103" data-name="数据">重置锁定</li>
+				<li onclick="addPanel('../Import/index.html',this)" data-id="103" data-name="数据">EXCEL数据导入</li>
+				<li onclick="addPanel('../Timing/index.html',this)" data-id="103" data-name="数据">定时任务</li>
+			</ul>
+		</div>
+		<div title="商家管理">
+			<ul class="lee-menu-list">
+				<li onclick="addPanel('../Services/add_service.html',this)" data-id="104" data-name="商家管理">新增商家管理</li>
+				<li onclick="addPanel('../Services/services_index.html',this)" data-id="104" data-name="商家管理">商家管理列表</li>
+			</ul>
+		</div>
+	</div>
+</body>
+{/block}
+{block name='script'}
+<script type="text/javascript">
+
+	function addPanel(url, _this) {
+		var title = $(_this).data('name'),
+			id = $(_this).data('id');
+		window.parent.addPanel(url, title, id);
+	}
+</script>
+{/block}
+</html>
