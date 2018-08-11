@@ -20,9 +20,9 @@ Route::get('hello/:name', 'index/hello');
 //后台路由
 Route::group('index',function(){
 
-    Route::get('/index', 'index/Index/index');      //后台首页
-    Route::get('/signin','index/Signin/index');    //登录首页
-    Route::get('/setting','index/Setting/index');  //设置首页
+    Route::get('/index', 'index/Index/index');            //后台首页
+    Route::get('/signin','index/Signin/index');           //登录首页
+    Route::get('/setting','index/Setting/index');         //设置首页
 
 });
 

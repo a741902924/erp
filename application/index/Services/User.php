@@ -48,7 +48,7 @@ class User{
             return ['state'=>0,'msg'=>'用户名不正确'];
         }
 
-        Session::set('login',true);
+        Session::set('login',$result);
         //清空session
         Session::set('login_num',false);
         return ['state'=>1,'msg'=>'登录成功！'];

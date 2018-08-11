@@ -8,11 +8,17 @@
  */
 namespace app\index\behavior;
 
-class LoginCheck{
+use think\Controller;
+use think\facade\Session;
+
+class LoginCheck extends Controller {
 
 
     public function run($params){
         // 行为逻辑
 
+        $action = request()->controller();
+        //echo Session::get('login');
+        //echo $action;exit;
     }
 }
