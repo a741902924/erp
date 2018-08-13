@@ -17,8 +17,18 @@ class LoginCheck extends Controller {
     public function run($params){
         // 行为逻辑
 
-        $action = request()->controller();
-        //echo Session::get('login');
-        //echo $action;exit;
+        $action = strtolower(request()->controller().'/'.request()->action());
+      //  echo $action;
+      //  dump(config('login.index'));
+      //  dump(!in_array($action,config('login.index'))); exit;
+
+        if(!Session::get('login.id')){
+
+            if(!in_array($action,config('login.index'))){
+
+              return $this->error('请登录','Signin/index');
+            }
+        }
+
     }
 }

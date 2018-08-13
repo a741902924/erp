@@ -144,7 +144,7 @@ return [
     'exception_handle'       => '',
 
     //验证码配置
-    'captcha' => [
+    ' ' => [
         // 验证码字体大小
         'fontSize'    =>    30,
         // 验证码位数

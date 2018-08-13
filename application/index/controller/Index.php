@@ -15,7 +15,6 @@ class Index extends Controller
      */
     public function index()
     {
-        //
 
         return $this->fetch();
     }
@@ -28,8 +27,7 @@ class Index extends Controller
 
        // echo '666';exit;
         Session::set('login',false);
-
-        return $this->redirect('/index/signin');
+        return $this->redirect('Signin/index');
     }
 
 
